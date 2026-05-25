@@ -17,7 +17,7 @@ resource "aws_route53_record" "expense_r53" {
     
     allow_overwrite = true
 }
-resource "aws_instance" "devops_ec2" {
+resource "aws_instance" "ansible_instance" {
     ami           = data.aws_ami.rhel_info.id
     instance_type = var.devops_ec2.instance_type
     vpc_security_group_ids = [var.allow_all]
@@ -33,9 +33,9 @@ resource "aws_instance" "devops_ec2" {
 }
 resource "aws_route53_record" "devops_r53" {
     zone_id = var.zone_id
-    name    = "devops.${var.domain_name}"
+    name    = "ansible.${var.domain_name}"
     type    = "A"
     ttl     = 1
-    records = [aws_instance.devops_ec2.public_ip]
+    records = [aws_instance.ansible_instance.public_ip]
     allow_overwrite = true
 }
