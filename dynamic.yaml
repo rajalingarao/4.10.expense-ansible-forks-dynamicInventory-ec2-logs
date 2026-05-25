@@ -2,13 +2,21 @@
   hosts: all
   become: yes
   tasks:
-  - name: install postfix
+  # - name: install postfix
+  #   ansible.builtin.dnf:
+  #     name: postfix
+  #     state: latest
+  # - name: start postfix
+  #   ansible.builtin.service:
+  #     name: postfix
+  #     state: started
+  - name: install mysql-server
     ansible.builtin.dnf:
-      name: postfix
+      name: mysql-server
       state: latest
-  - name: start postfix
+  - name: start mysq-server
     ansible.builtin.service:
-      name: postfix
+      name: mysqld
       state: started
 
 
