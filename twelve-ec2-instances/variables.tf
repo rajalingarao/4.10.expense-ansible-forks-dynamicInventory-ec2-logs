@@ -25,7 +25,7 @@ variable "instances" {
         # backend-12  = "t2.micro"
     }
 }
-variable "devops_ec2" {
+variable "ansible_ec2" {
    default = {
         instance_type  = "t3.micro"
    }
