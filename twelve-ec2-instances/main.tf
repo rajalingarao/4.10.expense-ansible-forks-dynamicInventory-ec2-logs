@@ -7,7 +7,7 @@ resource "aws_instance" "aws_dynamic_ec2" {
         Name = each.key
     }
 }
-resource "aws_route53_record" "expense_r53" {
+resource "aws_route53_record" "aws_dynamic_ec2_r53" {
     for_each = aws_instance.aws_dynamic_ec2
     zone_id = var.zone_id
     name    = "${each.key}.${var.domain_name}"
@@ -29,7 +29,7 @@ resource "aws_instance" "ansible_instance" {
     tags = {
         Name = "ansible_ec2"
     }
-    depends_on = [aws_instance.expense] 
+    depends_on = [aws_instance.aws_dynamic_ec2] 
 }
 resource "aws_route53_record" "ansible_instance_r53" {
     zone_id = var.zone_id
