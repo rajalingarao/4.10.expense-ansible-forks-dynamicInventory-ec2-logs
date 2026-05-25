@@ -21,11 +21,14 @@ resource "aws_instance" "ansible_instance" {
     ami           = data.aws_ami.rhel_info.id
     instance_type = var.ansible_ec2.instance_type
     vpc_security_group_ids = [var.allow_all]
-    user_data = file("${path.module}/ansible.sh")
-    # user_data = <<-EOF
-    #           #!/bin/bash
-    #           sudo dnf install ansible -y       
-    #           EOF
+    # user_data = file("${path.module}/ansible.sh")
+    user_data = <<-EOF
+              #!/bin/bash
+                sudo dnf install ansible -y
+                echo "****************"
+                sudo  ansible --version
+                echo "****************"    
+              EOF
     tags = {
         Name = "ansible_ec2"
     }
