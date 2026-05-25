@@ -4,7 +4,9 @@
 aws configure
 ```
 * access key:
+
 * secret access key:
+
 * region:
 ```
 sudo dnf install python3-pip -y
